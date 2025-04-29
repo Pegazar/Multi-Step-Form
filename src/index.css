@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+.multiStepForm {
+  @apply w-[375px] lg:w-[640px] bg-white py-6 px-6 lg:py-6 lg:px-22 rounded-xl shadow-lg lg:shadow-none absolute top-[8rem] lg:top-0 left-0 right-0 lg:relative mx-auto lg:mx-0 lg:h-[550px];
+}
+
+.bg-image {
+  @apply bg-[url('./assets/bg-sidebar-mobile.svg')] lg:bg-[url('./assets/bg-sidebar-desktop.svg')] 
+    bg-cover w-full h-[200px] lg:h-[568px] lg:w-[274px] bg-no-repeat fixed lg:relative top-0 left-0 right-0 pt-8 lg:pt-0 lg:pr-8 lg:pb-0;
+}
