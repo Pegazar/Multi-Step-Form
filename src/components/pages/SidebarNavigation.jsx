@@ -7,7 +7,7 @@ const SidebarNavigation = ({ steps, stepIndex }) => {
         {steps.map((step, index) => (
           <li
             key={step.id}
-            className={`flex lg:flex-row gap-0 lg:gap-4 items-center cursor-pointer`}
+            className='flex lg:flex-row gap-0 lg:gap-4 items-center cursor-pointer'
           >
             <span className={`w-8 h-8 rounded-full flex items-center justify-center border font-semibold border-white ${index === stepIndex
                 ? "bg-[#BEE2FD] text-[#0B2C56]"

@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react";
+import formSteps from "../data/formSteps";
 
 const useStepManager = (stepsList) => {
   const [stepIndex, setStepIndex] = useState(0);
@@ -43,6 +44,19 @@ const useStepManager = (stepsList) => {
     setFormTouched(false);
   }, []);
 
+  const goToStep = useCallback((index) => {
+    if (index >= 0 && index < stepsList.length) {
+      setStepIndex(index);
+      setFormTouched(false);
+      setIsStepValid(false);
+    }
+  }, [stepsList.length]);
+
+  const enhancedFormData = {
+    ...formData,
+    goToStep
+  };
+
   const handleSubmit = () => {
     setFormTouched(true);
     if (isStepValid) {
@@ -59,13 +73,14 @@ const useStepManager = (stepsList) => {
     isLastStep,
     formTouched,
     isStepValid,
-    formData,
+    formData: enhancedFormData,
     updateForm,
     setIsStepValid,
     setFormTouched,
     nextStep,
     prevStep,
-    handleSubmit,
+    goToStep,
+    handleSubmit
   };
 };
 
