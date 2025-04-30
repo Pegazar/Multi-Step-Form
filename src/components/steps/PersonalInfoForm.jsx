@@ -2,29 +2,40 @@ import React, { useState, useEffect } from "react";
 import InputField from "../utils/InputField";
 import useFormValidator from "../utils/useFormValidator";
 
-const PersonalInfoForm = ({ formData, updateForm, setIsStepValid, formTouched }) => {
+const PersonalInfoForm = ({
+  formData,
+  updateForm,
+  setIsStepValid,
+  formTouched,
+}) => {
   const [touched, setTouched] = useState({});
   const [errors, setErrors] = useState({});
+  const { personalInfo } = formData;
   const validator = useFormValidator(formData, setIsStepValid);
 
   useEffect(() => {
     const validationErrors = validator.validatePersonalInfo();
     setErrors(validationErrors);
-  }, [formData, validator]);
+  }, [formData]);
 
   useEffect(() => {
     if (formTouched) {
       setTouched({
         name: true,
         email: true,
-        phone: true
+        phone: true,
       });
     }
   }, [formTouched]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    updateForm({ [name]: value });
+    updateForm({
+      personalInfo: {
+        ...personalInfo,
+        [name]: value,
+      },
+    });
   };
 
   const handleBlur = (e) => {
@@ -34,7 +45,9 @@ const PersonalInfoForm = ({ formData, updateForm, setIsStepValid, formTouched })
 
   return (
     <div className="space-y-6">
-      <h2 className="text-[#042657] text-2xl lg:text-4xl font-bold mb-2">Personal info</h2>
+      <h2 className="text-[#042657] text-2xl lg:text-4xl font-bold mb-2">
+        Personal info
+      </h2>
       <p className="text-[#B8B9BE] mb-8">
         Please provide your name, email address, and phone number.
       </p>
@@ -44,7 +57,7 @@ const PersonalInfoForm = ({ formData, updateForm, setIsStepValid, formTouched })
           name="name"
           type="text"
           placeholder="e.g. Stephen King"
-          value={formData.name}
+          value={personalInfo.name}
           onChange={handleChange}
           onBlur={handleBlur}
           error={(touched.name || formTouched) && errors.name}
@@ -54,7 +67,7 @@ const PersonalInfoForm = ({ formData, updateForm, setIsStepValid, formTouched })
           name="email"
           type="email"
           placeholder="e.g. stephenking@lorem.com"
-          value={formData.email}
+          value={personalInfo.email}
           onChange={handleChange}
           onBlur={handleBlur}
           error={(touched.email || formTouched) && errors.email}
@@ -64,7 +77,7 @@ const PersonalInfoForm = ({ formData, updateForm, setIsStepValid, formTouched })
           name="phone"
           type="tel"
           placeholder="e.g. +1 234 567 890"
-          value={formData.phone}
+          value={personalInfo.phone}
           onChange={handleChange}
           onBlur={handleBlur}
           error={(touched.phone || formTouched) && errors.phone}

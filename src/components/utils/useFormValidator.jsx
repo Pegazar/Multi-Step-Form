@@ -1,11 +1,11 @@
 const useFormValidator = (formData, setIsStepValid) => {
     const validatePersonalInfo = () => {
       const errors = {};
-      if (!formData.name?.trim()) errors.name = "This field is required";
-      if (!formData.email?.trim()) errors.email = "This field is required";
-      if (!formData.phone?.trim()) errors.phone = "This field is required";
+      if (!formData.personalInfo.name?.trim()) errors.name = "This field is required";
+      if (!formData.personalInfo.email?.trim()) errors.email = "This field is required";
+      if (!formData.personalInfo.phone?.trim()) errors.phone = "This field is required";
       
-      if (formData.email && !/\S+@\S+\.\S+/.test(formData.email)) {
+      if (formData.personalInfo.email && !/\S+@\S+\.\S+/.test(formData.personalInfo.email)) {
         errors.email = "Email address is invalid";
       }
             
