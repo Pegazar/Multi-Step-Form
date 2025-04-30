@@ -8,7 +8,7 @@ const FormNavigation = ({
   onSubmit,
 }) => {
   return (
-    <div className="flex justify-between items-center fixed lg:absolute bottom-0 left-0 right-0 lg:left-22 lg:right-22">
+    <div className="flex justify-between items-center fixed lg:absolute bottom-0 left-0 right-0 p-5 lg:p-0 lg:left-22 lg:right-22 bg-white lg:bg-transparent">
       {stepIndex > 0 ? (
         <div>
           <button
